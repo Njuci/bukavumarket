@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-785%s2@eym#+u&sb3ez(h9mrrd6rcettv@czu!0$_-a)--%&g+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'bukavumarket.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-DATABSES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'b_marche',
@@ -95,9 +95,7 @@ DATABSES = {
         'PASSWORD': '3670njci',
         'HOST': 'localhost',
         'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+     
     }
 }
 

@@ -2,6 +2,9 @@ from rest_framework import viewsets
 from .models import Utilisateur,Categorie,Produit,Commande
 from .serializers import *
 from .filtres import *
+
+from rest_framework.decorators import action
+from .sendingemail import envoyer_email
 class UtilisateurViewSet(viewsets.ModelViewSet):
     queryset = Utilisateur.objects.all()
     serializer_class = UtilisateurSerializer
@@ -62,3 +65,25 @@ class LignesCommandeViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+from rest_framework import status, viewsets
+from rest_framework.response import Response
+
+class EmailConfirmationViewSet(viewsets.ViewSet):
+
+    def create(self, request):
+        # Extraction des données du corps de la requête
+        email = request.data.get('email')
+        lien = request.data.get('lien')
+
+        if not email or not lien:
+            return Response({"error": "Email ou lien manquant"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Appel de la fonction qui envoie l'email
+        is_send = envoyer_email(email, lien)
+
+        if is_send:
+            message = {"success": "Mail envoyé"}
+            return Response(message, status=status.HTTP_200_OK)
+        else:
+            message = {"errors": "Mail non envoyé"}
+            return Response(message, status=status.HTTP_400_BAD_REQUEST)

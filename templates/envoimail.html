@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation par e-mail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .confirmation-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .message-confirmation {
+            color: #007bff; /* Bleu */
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <h2>Confirmation par e-mail    {{date}} </h2>
+    
+        <div class="message-confirmation">
+            <p>Un email de confirmation a été envoyé à votre adresse {{email}}. Veuillez vérifier votre boîte de réception.</p>
+
+        </div>
+        <div>  <a hrf={{lien}}> Voici le liens   </a></div>
+    
+    </div>
+</body>
+</html>
